@@ -3,6 +3,48 @@ body {
   background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.get_by_location {
+  font-size: 26px;
+  text-align: center;
+  padding: 10px 0 0 0;
+  color: #fff;
+}
+
+.header {
+  font-size: 38px;
+}
+
+.sr-ss {
+  font-size: 24px;
+  margin: 0;
+}
+
+.sr-ss .sr, .ss {
+  font-size: 18px;
+  color: #777;
+}
+
+.start, .end {
+  font-size: 11px;
+}
+
+.card-panel {
+  color: #333;
+}
+
+.sunposition {
+  position: relative;
+  height: 50px;
+}
+
+.current {
+  position: absolute;
+  top: 2px;
+  font-size: 26px;
+  line-height: 0;
 }
 
 /*Loading rotating image*/
