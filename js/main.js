@@ -64,19 +64,9 @@ $(document).ready(function(){
   $(document).keypress(function(event) {
     if(event.which == 13){
 
-    $('.sun').addClass('rotate-img');
-    if($('#city').val() == "") {
-      Materialize.toast('Please type a city name', 4000);
-      return false;
-    }
-    $.getJSON(url+'q='+$('#city').val()+appid, function(data){
-      updateData(data);
-    });
-    }else{
-      return true;
-    }
+    $('.get_weather').click(); 
 
-  });
+  }
   $('.get_weather').on('click', function(){
     $('.sun').addClass('rotate-img');
     if($('#city').val() == "") {
