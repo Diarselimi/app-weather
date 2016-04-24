@@ -28,14 +28,14 @@ var icons = {
     "50n": "<i class='wi wi-fog'></i>",
 };
 
-var wallpapers = [{
-    "url": "https://images.unsplash.com/photo-1431887773042-803ed52bed26?crop=entropy&fit=crop&fm=jpg&h=475&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1375",
-    "url": "https://images.unsplash.com/photo-1450101215322-bf5cd27642fc?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=eb4214b1bb04674628992a705ad3dc30",
-    "url": "https://images.unsplash.com/photo-1422393462206-207b0fbd8d6b?crop=entropy&fit=crop&fm=jpg&h=675&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1375",
-    "url": "https://images.unsplash.com/photo-1444858345149-8ff40887589b?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=f4b7fe44cd687b6707e1096b922b88cc",
-    "url": "https://images.unsplash.com/photo-1437376576540-236661ddb41f?crop=entropy&fit=crop&fm=jpg&h=675&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1375",
-    "url": "https://images.unsplash.com/photo-1429979787503-f2d7d20550c8?crop=entropy&fit=crop&fm=jpg&h=675&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1375"
-}];
+var wallpapers = [
+    "https://images.unsplash.com/photo-1431887773042-803ed52bed26?crop=entropy&fit=crop&fm=jpg&h=475&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1375",
+    "https://images.unsplash.com/photo-1450101215322-bf5cd27642fc?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=eb4214b1bb04674628992a705ad3dc30",
+    "https://images.unsplash.com/photo-1422393462206-207b0fbd8d6b?crop=entropy&fit=crop&fm=jpg&h=675&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1375",
+    "https://images.unsplash.com/photo-1444858345149-8ff40887589b?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=f4b7fe44cd687b6707e1096b922b88cc",
+    "https://images.unsplash.com/photo-1437376576540-236661ddb41f?crop=entropy&fit=crop&fm=jpg&h=675&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1375",
+    "https://images.unsplash.com/photo-1429979787503-f2d7d20550c8?crop=entropy&fit=crop&fm=jpg&h=675&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1375"
+];
 
 var night = [
     "https://images.unsplash.com/reserve/oY3ayprWQlewtG7N4OXl_DSC_5225-2.jpg?crop=entropy&fit=crop&fm=jpg&h=675&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1375",
@@ -48,12 +48,15 @@ var night = [
 ];
 var currTime;
 $(document).ready(function() {
+
     var date = moment.utc().format();
-    console.log(date);
     currTime = date.split('T')[1].split(':', 1)[0];
-    if (currTime < 5) {
+    if (currTime < 6 || currTime > 19) {
         $('body').css('background-image', 'url(' + night[parseInt(Math.random() * night.length)] + ')');
         $('body').css('color', '#fff');
+    } else {
+        //random wallpaper
+        $('body').css('background-image', 'url(' + wallpapers[parseInt(Math.random() * wallpapers.length)] + ')');
     }
     date = date.split('T', 1)[0];
     $('.now').html(date.split('-').reverse().join(' '));
@@ -84,15 +87,15 @@ $(document).ready(function() {
     });
 
     $('.unitchange').on('change', function() {
-        
+
         if (isCelsius) {
-          isCelsius = false;
-          $('unitchange').attr('checked', 'false');
+            isCelsius = false;
+            $('unitchange').attr('checked', 'false');
             var tempurl = url + 'q=' + $('#city').val() + appid;
             unitIcon = '<i class="wi wi-fahrenheit"></i>';
         } else {
-          isCelsius = true;
-          $('unitchange').attr('checked', 'true');
+            isCelsius = true;
+            $('unitchange').attr('checked', 'true');
             var tempurl = url + 'q=' + $('#city').val() + appid + celsius;
             unitIcon = '<i class="wi wi-celsius"></i>';
         }
